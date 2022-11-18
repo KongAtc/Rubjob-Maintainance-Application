@@ -3,6 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+
 import Home from "./screens/Home";
 import Detail from "./screens/Detail";
 import Stat from "./screens/Stat";
@@ -26,7 +30,9 @@ const HomeNonStack = () => {
   const { user, role } = useSelector((state) => state.userInfo);
   return (
     <Provider store={store}>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Navigator
+        screenOptions={{ headerShown: false, tabBarStyle: { height: "7.5%" } }}
+      >
         {role != "" && (
           <Tab.Screen
             name="Home"
@@ -44,7 +50,9 @@ const HomeNonStack = () => {
             component={History}
             options={{
               tabBarIcon: ({ color, size }) => {
-                return <Ionicons name="ios-earth" size={size} color={color} />;
+                return (
+                  <AntDesign name="clockcircleo" size={size} color={color} />
+                );
               },
             }}
           />
@@ -56,7 +64,9 @@ const HomeNonStack = () => {
             component={Staff}
             options={{
               tabBarIcon: ({ color, size }) => {
-                return <Ionicons name="ios-earth" size={size} color={color} />;
+                return (
+                  <MaterialIcons name="engineering" size={size} color={color} />
+                );
               },
             }}
           />
@@ -68,7 +78,13 @@ const HomeNonStack = () => {
             component={Admin}
             options={{
               tabBarIcon: ({ color, size }) => {
-                return <Ionicons name="ios-earth" size={size} color={color} />;
+                return (
+                  <MaterialIcons
+                    name="admin-panel-settings"
+                    size={size}
+                    color={color}
+                  />
+                );
               },
             }}
           />
@@ -79,12 +95,13 @@ const HomeNonStack = () => {
             component={Admin_History}
             options={{
               tabBarIcon: ({ color, size }) => {
-                return <Ionicons name="ios-earth" size={size} color={color} />;
+                return (
+                  <FontAwesome name="sticky-note-o" size={size} color={color} />
+                );
               },
             }}
           />
         )}
-        
       </Tab.Navigator>
     </Provider>
   );
