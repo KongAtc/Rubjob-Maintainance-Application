@@ -15,7 +15,9 @@ import { app } from "../screens/FirebaseDB";
 import { doc, updateDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import firebase from "firebase/compat";
-
+const lineNotify = require("line-notify-nodejs")(
+  "DDNQRjE7gDNxOEM2cNJ3qnoJwgUbIWEwDAJqFfL57aF"
+);
 const AdminItem = (props) => {
   const [id, setId] = useState("");
   const [isPending, setIsPending] = useState(false);
@@ -37,20 +39,38 @@ const AdminItem = (props) => {
       approve_user: user,
       time_approve: t,
     });
+    lineNotify
+      .notify({
+        message:
+          "\n🔥🔥🔥🔥🔥🔥🔥\n\nสถานที่ : " +
+          props.place +
+          "\n\nคําอธิบาย: " +
+          props.description +
+          "\n\nช่องทางการติดต่อ : " +
+          props.phone +
+          "\n\n💦💦💦💦💦💦💦",
+      })
+      .then(() => {
+        console.log("send completed!");
+      });
   };
 
   const setShow = () => {
     ChangeStatusPending();
   };
   const ChangeReject = () => {
-    ref_id = props.id;
-    const dref = doc(dbRef, ref_id);
-    updateDoc(dref, {
-      status: "Reject",
-      rejectDesc: rejDes,
-      rej_user: user,
-      time_rej: t,
-    });
+    if (rejDes == "") {
+      alert("กรุณากรอกเหตุผลการปฏิเสธ");
+    } else {
+      ref_id = props.id;
+      const dref = doc(dbRef, ref_id);
+      updateDoc(dref, {
+        status: "Reject",
+        rejectDesc: rejDes,
+        rej_user: user,
+        time_rej: t,
+      });
+    }
   };
 
   useEffect(() => {
@@ -76,7 +96,7 @@ const AdminItem = (props) => {
           <View style={styles.modal}>
             <View style={styles.modal_inner}>
               <View style={styles.modal_text}>
-                <Text>Are u sure about that?</Text>
+                <Text>คุณเเน่ใจเเล้วหรือไม่ที่จะอนุมัติงานนี้?</Text>
               </View>
               <View style={styles.modal_box_btn}>
                 <TouchableOpacity
@@ -113,7 +133,7 @@ const AdminItem = (props) => {
                   }}
                   multiline
                   numberOfLines={3}
-                  placeholder="อาหารแมวหมด"
+                  placeholder="อาหารเเมวหมด"
                 ></TextInput>
               </View>
               <View style={styles.modal_box_btn}>
@@ -299,7 +319,7 @@ const styles = new StyleSheet.create({
   },
   text_input: {
     width: "80%",
-    margin: "auto",
+    marginTop: 15,
     backgroundColor: "#D9D9D9",
     borderRadius: 5,
     padding: 10,

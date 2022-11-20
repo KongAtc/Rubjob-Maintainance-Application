@@ -82,7 +82,7 @@ const Login = ({ navigation }) => {
     }
   };
   const resetPassword = async () => {
-    if (username === "" || answer === "") {
+    if (username === "") {
       alert("Please fill all input");
       return false;
     } else {
@@ -125,7 +125,7 @@ const Login = ({ navigation }) => {
           });
       }
       setModalVisible(!modalVisible);
-      navigation.navigate("Home");
+      // navigation.navigate("Home");
     }
   };
   useEffect(() => {
@@ -137,6 +137,7 @@ const Login = ({ navigation }) => {
       console.log("Pass");
     }
   }, [userInfo, user]);
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <Modal
@@ -159,14 +160,6 @@ const Login = ({ navigation }) => {
                 setUsername(text);
               }}
             />
-            <TextInput
-              placeholder="Answer ❤️ :"
-              style={styles.input}
-              value={answer}
-              onChangeText={(text) => {
-                setAnswer(text);
-              }}
-            />
 
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -174,6 +167,28 @@ const Login = ({ navigation }) => {
             >
               <Text style={styles.textStyle}>Reset Password</Text>
             </Pressable>
+            <TouchableOpacity
+              onPress={() => {
+                styles.container = {
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#CFF5E7",
+                };
+                styles.appText = {
+                  fontSize: 45,
+                  fontWeight: "800",
+                  color: "#0E5E6F",
+                };
+                styles.registerAndForgot = {
+                  opacity: 1,
+                  color: "#319DA0",
+                };
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <Text style={styles.gobackLogin}>Go back to login</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -204,13 +219,28 @@ const Login = ({ navigation }) => {
           <Text style={{ fontWeight: "700", textAlign: "center" }}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleSignUp} style={{ marginTop: 10 }}>
-          <Text style={{ color: "#319DA0" }}>Register</Text>
+          <Text style={styles.registerAndForgot}>Register</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => setModalVisible(true)}
+          onPress={() => {
+            setModalVisible(true);
+            styles.container = {
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#CFF5E7",
+            };
+            styles.appText = {
+              color: "#319DA0",
+              opacity: 0,
+            };
+            styles.registerAndForgot = {
+              opacity: 0,
+            };
+          }}
           style={{ marginTop: 10 }}
         >
-          <Text style={{ color: "#319DA0" }}>Forgot Password ?</Text>
+          <Text style={styles.registerAndForgot}>Forgot Password ?</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -319,6 +349,14 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+  gobackLogin: {
+    fontSize: 10,
+    color: "#969696",
+    marginTop: "13%",
+  },
+  registerAndForgot: {
+    color: "#319DA0",
   },
 });
 export default Login;

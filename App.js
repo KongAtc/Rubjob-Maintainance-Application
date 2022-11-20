@@ -31,7 +31,7 @@ const HomeNonStack = () => {
   return (
     <Provider store={store}>
       <Tab.Navigator
-        screenOptions={{ headerShown: false, tabBarStyle: { height: "7.5%" } }}
+        screenOptions={{ headerShown: false, tabBarStyle: { height: "10%" } }}
       >
         {role != "" && (
           <Tab.Screen

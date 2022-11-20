@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Image,
-} from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
 
 import HistoryTile from "../components/HistoryTile";
 import { Dummy } from "../data/test";
@@ -41,7 +35,7 @@ const History = ({ route, navigation }) => {
                   { color: "#FF922E", marginLeft: "3%", fontWeight: "600" },
                 ]}
               >
-                {"Request" + "(" + requestItem.length + ")"}
+                {"Request " + "(" + requestItem.length + ")"}
               </Text>
               <View
                 style={{
@@ -61,7 +55,7 @@ const History = ({ route, navigation }) => {
                   { color: "#1C5F9D", marginLeft: "3%", fontWeight: "600" },
                 ]}
               >
-                {"Pending" + "(" + pendingItem.length + ")"}
+                {"Pending " + "(" + pendingItem.length + ")"}
               </Text>
               <View
                 style={{
@@ -81,7 +75,7 @@ const History = ({ route, navigation }) => {
                   { color: "#18B23A", marginLeft: "3%", fontWeight: "600" },
                 ]}
               >
-                {"Success" + "(" + successItem.length + ")"}
+                {"Success " + "(" + successItem.length + ")"}
               </Text>
               <View
                 style={{
@@ -101,7 +95,7 @@ const History = ({ route, navigation }) => {
                   { color: "#E23333", marginLeft: "3%", fontWeight: "600" },
                 ]}
               >
-                {"Reject" + "(" + rejectItem.length + ")"}
+                {"Reject " + "(" + rejectItem.length + ")"}
               </Text>
               <View
                 style={{

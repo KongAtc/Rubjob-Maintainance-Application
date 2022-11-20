@@ -8,15 +8,12 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { app } from "./FirebaseDB";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [resetPassQ, setPassQ] = useState("");
+
   const handleSignUp = () => {
     const auth = getAuth();
     const dbRef = app.firestore().collection("User");
@@ -32,7 +29,6 @@ const Register = ({ navigation }) => {
             .add({
               username: username,
               role: "user",
-              resetPassWordQuestion: resetPassQ,
             })
 
             .catch((err) => {
@@ -43,6 +39,7 @@ const Register = ({ navigation }) => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          alert("อีเมลล์นี้ถูกใช้งานไปเเล้ว");
           console.log(errorMessage);
           // ..
         });
@@ -71,19 +68,17 @@ const Register = ({ navigation }) => {
             setPassword(text);
           }}
         />
-        <Text style={{ marginTop: 15 }}>สถานที่ที่ชื่นชอบภายในคณะ 🏫</Text>
-        <TextInput
-          placeholder="สถานที่ :"
-          style={styles.input}
-          value={resetPassQ}
-          onChangeText={(text) => {
-            setPassQ(text);
-          }}
-        />
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={handleSignUp} style={styles.button}>
-          <Text>Create Account</Text>
+          <Text style={{ textAlign: "center" }}>Create Account</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+        >
+          <Text style={styles.gobackText}>Go back to login</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -147,6 +142,11 @@ const styles = StyleSheet.create({
     fontSize: 45,
     fontWeight: "800",
     color: "#0E5E6F",
+  },
+  gobackText: {
+    fontSize: 10,
+    color: "#59C1BD",
+    marginTop: "13%",
   },
 });
 export default Register;

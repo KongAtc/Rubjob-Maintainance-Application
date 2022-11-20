@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Image,
-} from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
 import {
   collection,
   query,
@@ -50,7 +44,7 @@ const Admin_his = ({ route, navigation }) => {
                   { color: "#FF922E", marginLeft: "3%", fontWeight: "600" },
                 ]}
               >
-                {"Request" + "(" + requestItem.length + ")"}
+                {"Request " + "(" + requestItem.length + ")"}
               </Text>
               <View
                 style={{
@@ -70,7 +64,7 @@ const Admin_his = ({ route, navigation }) => {
                   { color: "#1C5F9D", marginLeft: "3%", fontWeight: "600" },
                 ]}
               >
-                {"Pending" + "(" + pendingItem.length + ")"}
+                {"Pending " + "(" + pendingItem.length + ")"}
               </Text>
               <View
                 style={{
@@ -90,7 +84,7 @@ const Admin_his = ({ route, navigation }) => {
                   { color: "#18B23A", marginLeft: "3%", fontWeight: "600" },
                 ]}
               >
-                {"Success" + "(" + successItem.length + ")"}
+                {"Success " + "(" + successItem.length + ")"}
               </Text>
               <View
                 style={{
@@ -110,7 +104,7 @@ const Admin_his = ({ route, navigation }) => {
                   { color: "#E23333", marginLeft: "3%", fontWeight: "600" },
                 ]}
               >
-                {"Reject" + "(" + rejectItem.length + ")"}
+                {"Reject " + "(" + rejectItem.length + ")"}
               </Text>
               <View
                 style={{
@@ -164,7 +158,6 @@ const styles = StyleSheet.create({
     marginLeft: "2%",
     fontWeight: "500",
   },
-
 });
 
 export default Admin_his;

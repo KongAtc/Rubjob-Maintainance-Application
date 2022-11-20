@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -18,7 +18,6 @@ import firebase from "firebase/compat/app";
 // app;
 // เอา ID มาใส่
 export default function StaffForm({ route, navigation }) {
-
   const [description_fix, setDescription_fix] = useState("");
   const taskId = route.params.taskId.toString();
   let url_image;
@@ -90,7 +89,6 @@ export default function StaffForm({ route, navigation }) {
       });
     offModal();
     navigation.navigate("Home");
-    
   };
 
   //On off modal
@@ -135,7 +133,7 @@ export default function StaffForm({ route, navigation }) {
           </View>
 
           <View style={styles.group_input}>
-            <Text style={styles.text_headerlabel}>คำอธิบายการเเก้ปํญหา *</Text>
+            <Text style={styles.text_headerlabel}>คำอธิบายการเเก้ปัญหา *</Text>
             <TextInput
               multiline
               numberOfLines={2}

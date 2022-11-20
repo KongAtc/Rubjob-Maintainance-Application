@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -44,7 +44,6 @@ export default function FixForm({ props, navigation }) {
     setImage(source);
     //Debug
     // console.log(source);
-    
   };
   //uploadImage
   const uploadImage = async () => {

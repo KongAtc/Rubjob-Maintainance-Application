@@ -26,8 +26,8 @@ const AdminList = (props) => {
             time: itemData.item.time,
             url: itemData.item.url,
             reject: itemData.item.rejectDesc,
-            url_fix:itemData.item.url_image_fix,
-            des_fix:itemData.item.description_fix,
+            url_fix: itemData.item.url_image_fix,
+            des_fix: itemData.item.description_fix,
             from: "A",
           });
         }}
