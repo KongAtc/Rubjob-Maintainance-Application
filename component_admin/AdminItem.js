@@ -61,6 +61,7 @@ const AdminItem = (props) => {
   const ChangeReject = () => {
     if (rejDes == "") {
       alert("กรุณากรอกเหตุผลการปฏิเสธ");
+      return false;
     } else {
       ref_id = props.id;
       const dref = doc(dbRef, ref_id);

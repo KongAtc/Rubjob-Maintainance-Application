@@ -231,7 +231,7 @@ export default function StaffForm({ route, navigation }) {
                   สำหรับการส่งซ่อม
                 </Text>
                 <Text style={{ fontSize: 20, fontWeight: "500" }}>
-                  (Comfirm Fix Form)
+                  (Comfirm Staff Form)
                 </Text>
               </View>
               <View>
