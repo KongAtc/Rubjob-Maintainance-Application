@@ -97,8 +97,7 @@ export default function FixForm({ props, navigation }) {
           "\n\nคําอธิบาย: " +
           description +
           "\n\nช่องทางการติดต่อ : " +
-          phone +
-          "\n\n💦💦💦💦💦💦💦",
+          phone,
       })
       .then(() => {
         console.log("send completed!");
