@@ -17,8 +17,11 @@ const Register = ({ navigation }) => {
   const handleSignUp = () => {
     const auth = getAuth();
     const dbRef = app.firestore().collection("User");
-    if (username === "" || password === "" || resetPassQ === "") {
+    if (username === "" || password === "") {
       alert("Please fill all input");
+      return false;
+    } else if (username.includes("it.kmitl.ac.th") == false) {
+      alert("Only sign up with it.kmitl.ac.th");
       return false;
     } else {
       createUserWithEmailAndPassword(auth, username, password)

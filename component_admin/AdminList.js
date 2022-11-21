@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { View } from "react-native";
 import AdminItem from "./AdminItem";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList } from "react-native";
 const AdminList = (props) => {
   const renderAdminItem = (itemData) => {
     return (

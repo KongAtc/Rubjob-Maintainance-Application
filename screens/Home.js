@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
   StyleSheet,
   Image,
   TouchableOpacity,
+  LogBox,
 } from "react-native";
 
 const Home = ({ props, navigation }) => {
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.topSec}>

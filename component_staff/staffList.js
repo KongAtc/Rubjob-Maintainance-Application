@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import StaffItem from "./staffItem";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList } from "react-native";
 const StaffList = (props) => {
   const renderStaffItem = (itemData) => {
     return (

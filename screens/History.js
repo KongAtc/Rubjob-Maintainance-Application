@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  Image,
+  LogBox,
+} from "react-native";
 
 import HistoryTile from "../components/HistoryTile";
 import { Dummy } from "../data/test";
@@ -13,7 +20,9 @@ const History = ({ route, navigation }) => {
   const pendingItem = box.filter((t) => t.status == "Pending");
   const successItem = box.filter((t) => t.status == "Success");
   const rejectItem = box.filter((t) => t.status == "Reject");
-
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.nav}>

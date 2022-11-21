@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Modal,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useSelector } from "react-redux";
@@ -24,7 +25,7 @@ export default function FixForm({ props, navigation }) {
   const { user, role } = useSelector((state) => state.userInfo);
   const [modalShow, setModalShow] = useState(false);
   const [modalalert, setModalAlert] = useState(false);
-
+  const [spinner, setSpinner] = useState(false);
   let url_image;
   //Connect FireBase
   const dbRef = app.firestore().collection("Fix_list");
@@ -74,6 +75,7 @@ export default function FixForm({ props, navigation }) {
     console.log(place, description, phone);
     const timestamp = firebase.firestore.Timestamp.now();
     const t = timestamp.toDate().toDateString();
+    setSpinner(true);
     dbRef
       .add({
         place: place,
@@ -100,6 +102,7 @@ export default function FixForm({ props, navigation }) {
       })
       .then(() => {
         console.log("send completed!");
+        setSpinner(false);
       });
     setPlace("");
     setDescription("");
@@ -271,6 +274,10 @@ export default function FixForm({ props, navigation }) {
                 }}
                 source={require("../assets/image-6.png")}
               />
+              <ActivityIndicator
+                animating={spinner}
+                style={{ marginTop: 5 }}
+              ></ActivityIndicator>
               <Text style={{ fontSize: 20, fontWeight: "500" }}>
                 ยืนยันการส่งฟอร์ม
               </Text>

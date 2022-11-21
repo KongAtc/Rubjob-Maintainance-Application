@@ -9,7 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@expo/webpack-config": "^0.16.19",
+    "@emailjs/browser": "^3.9.1",
+    "@expo/webpack-config": "^0.12.44",
     "@likashefqet/react-native-image-zoom": "^1.2.1",
     "@react-native-firebase/app": "~15.4.0",
     "@react-native-google-signin/google-signin": "^8.2.1",
@@ -36,6 +37,7 @@
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
     "react-native-chart-kit": "^6.12.0",
+    "react-native-email": "^2.1.0",
     "react-native-fast-image": "^8.6.3",
     "react-native-fix-image": "^2.1.0",
     "react-native-gesture-handler": "~2.5.0",

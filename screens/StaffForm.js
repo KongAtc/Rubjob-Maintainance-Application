@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,12 +9,14 @@ import {
   Modal,
   Keyboard,
   TouchableWithoutFeedback,
+  ActivityIndicator,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useSelector } from "react-redux";
 
 import { app } from "./FirebaseDB";
 import firebase from "firebase/compat/app";
+// import emailjs from "emailjs/browser";
 // app;
 // เอา ID มาใส่
 export default function StaffForm({ route, navigation }) {
@@ -30,6 +32,7 @@ export default function StaffForm({ route, navigation }) {
   //modal
   const [modalShow, setModalShow] = useState(false);
   const [modalalert, setModalAlert] = useState(false);
+  const [spinner, setSpinner] = useState(false);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -74,6 +77,7 @@ export default function StaffForm({ route, navigation }) {
     await uploadImage();
     const timestamp = firebase.firestore.Timestamp.now();
     const t = timestamp.toDate().toDateString();
+    setSpinner(true);
     //Use For Fix Form
     dbRef
       .doc(taskId)
@@ -84,10 +88,12 @@ export default function StaffForm({ route, navigation }) {
         time_fix: t,
         staff_user: user,
       })
+      .then(setSpinner(false))
       .catch((err) => {
         console.log(err);
       });
     offModal();
+    setSpinner(false);
     navigation.navigate("Home");
   };
 
@@ -233,6 +239,10 @@ export default function StaffForm({ route, navigation }) {
                 <Text style={{ fontSize: 20, fontWeight: "500" }}>
                   (Comfirm Staff Form)
                 </Text>
+                <ActivityIndicator
+                  animating={spinner}
+                  style={{ marginTop: 5 }}
+                ></ActivityIndicator>
               </View>
               <View>
                 <View style={styles.container_summit_modal}>

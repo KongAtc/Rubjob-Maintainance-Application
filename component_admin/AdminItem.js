@@ -10,6 +10,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
 import { app } from "../screens/FirebaseDB";
 import { doc, updateDoc } from "firebase/firestore";
@@ -29,11 +30,13 @@ const AdminItem = (props) => {
   const { user, role } = useSelector((state) => state.userInfo);
   const timestamp = firebase.firestore.Timestamp.now();
   const t = timestamp.toDate().toDateString();
+  const [spinner, setSpinner] = useState(false);
   let ref_id = "";
 
   const ChangeStatusPending = () => {
     ref_id = props.id;
     const dref = doc(dbRef, ref_id);
+    setSpinner(true);
     updateDoc(dref, {
       status: "Pending",
       approve_user: user,
@@ -52,6 +55,7 @@ const AdminItem = (props) => {
       })
       .then(() => {
         console.log("send completed!");
+        setSpinner(false);
       });
   };
 
@@ -98,7 +102,12 @@ const AdminItem = (props) => {
             <View style={styles.modal_inner}>
               <View style={styles.modal_text}>
                 <Text>คุณเเน่ใจเเล้วหรือไม่ที่จะอนุมัติงานนี้?</Text>
+                <ActivityIndicator
+                  animating={spinner}
+                  style={{ marginTop: 5 }}
+                ></ActivityIndicator>
               </View>
+
               <View style={styles.modal_box_btn}>
                 <TouchableOpacity
                   style={styles.btn_cancel}

@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Historyitem from "./HistoryItem";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList } from "react-native";
 const HistoryTile = (props) => {
   const renderHistoryItem = (itemData) => {
-
     return (
       <Historyitem
         id={itemData.item.id}

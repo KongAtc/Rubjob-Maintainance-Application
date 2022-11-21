@@ -1,11 +1,5 @@
-import React, { useState, } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Image,
-} from "react-native";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
 import {
   collection,
   query,
@@ -23,8 +17,7 @@ const Admin = ({ props, navigation }) => {
   //Filter Data
   const requestItem = box.filter((t) => t.status == "Request");
   const pendingItem = box.filter((t) => t.status == "Pending");
-  const successItem = box.filter((t) => t.status == "Success");
-  const rejectItem = box.filter((t) => t.status == "Reject");
+
   return (
     <View style={styles.container}>
       <View style={styles.nav}>
@@ -79,28 +72,6 @@ const Admin = ({ props, navigation }) => {
           )}
           <AdminList listData={pendingItem} navigation={navigation} />
         </View>
-        {/* <!--Success--> */}
-        <View>
-          {successItem.length > 0 && (
-            <View>
-              <Text
-                style={[
-                  styles.header_txt,
-                  { color: "#18B23A", marginLeft: "3%", fontWeight: "600" },
-                ]}
-              >
-                {"Success (" + successItem.length + ")"}
-              </Text>
-              <View
-                style={{
-                  borderBottomColor: "grey",
-                }}
-              />
-            </View>
-          )}
-          <AdminList listData={successItem} navigation={navigation} />
-        </View>
-        
       </ScrollView>
     </View>
   );
