@@ -12,6 +12,7 @@ const StaffList = (props) => {
         phone={itemData.item.phone}
         time={itemData.item.time}
         url={itemData.item.url}
+        // ratingCheck={itemData.item.ratingCheck}
         onSelectTask={() => {
           props.navigation.navigate("Detail", {
             taskId: itemData.item.id,
@@ -21,6 +22,7 @@ const StaffList = (props) => {
             phone: itemData.item.phone,
             time: itemData.item.time,
             url: itemData.item.url,
+            // ratingCheck: itemData.item.ratingCheck,
             from: "S",
           });
         }}

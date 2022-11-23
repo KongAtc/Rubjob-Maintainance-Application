@@ -16,6 +16,7 @@ const HistoryTile = (props) => {
         reject={itemData.item.rejectDesc}
         url_fix={itemData.item.url_image_fix}
         des_fix={itemData.item.description_fix}
+        ratingCheck={itemData.item.ratingCheck}
         onSelectTask={() => {
           props.navigation.navigate("Detail", {
             taskId: itemData.item.id,
@@ -28,6 +29,7 @@ const HistoryTile = (props) => {
             reject: itemData.item.rejectDesc,
             url_fix: itemData.item.url_image_fix,
             des_fix: itemData.item.description_fix,
+            ratingCheck: itemData.item.ratingCheck,
             from: "H",
           });
         }}

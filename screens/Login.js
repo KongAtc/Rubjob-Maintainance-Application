@@ -29,7 +29,6 @@ const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
-  const [answer, setAnswer] = useState("");
   let userInfo = [];
   const { user, role } = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
@@ -94,11 +93,10 @@ const Login = ({ navigation }) => {
       );
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        const { username, role, resetPassWordQuestion } = doc.data();
+        const { username, role } = doc.data();
         usernameAndRole.push({
           username: username,
           role: role,
-          resetPassWordQuestion: resetPassWordQuestion,
         });
         //Debug
         // console.log(doc.data(), typeof doc.data()), doc.id;
@@ -106,24 +104,24 @@ const Login = ({ navigation }) => {
         userInfo = usernameAndRole;
         // console.log(userInfo);
       });
-      if (
-        userInfo.length != 0 &&
-        answer === userInfo[0].resetPassWordQuestion
-      ) {
-        console.log("Match");
-        const auth = getAuth();
-        sendPasswordResetEmail(auth, username)
-          .then(() => {
-            // Password reset email sent!
-            // ..
-            console.log("Send reset email successfully");
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-          });
-      }
+      // if (
+      //   userInfo.length != 0 &&
+      //   answer === userInfo[0].resetPassWordQuestion
+      // ) {
+      console.log("Match");
+      const auth = getAuth();
+      sendPasswordResetEmail(auth, username)
+        .then(() => {
+          // Password reset email sent!
+          // ..
+          console.log("Send reset email successfully");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+      // }
       setModalVisible(!modalVisible);
       // navigation.navigate("Home");
     }

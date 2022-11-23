@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 
 import { app } from "./FirebaseDB";
 import firebase from "firebase/compat";
+// import { Dropdown } from "react-native-material-dropdown";
 const lineNotify = require("line-notify-nodejs")(
   "dEo2sIrWIemijIwPBgS84gqtkt0h1bhQhVxpWndTfVw"
 );
@@ -27,9 +28,25 @@ export default function FixForm({ props, navigation }) {
   const [modalalert, setModalAlert] = useState(false);
   const [spinner, setSpinner] = useState(false);
   let url_image;
+
+  let data = [
+    {
+      value: "banana",
+    },
+    {
+      value: "apple",
+    },
+  ];
   //Connect FireBase
   const dbRef = app.firestore().collection("Fix_list");
 
+  // Dropdown
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  // const [items, setItems] = useState([
+  //   { label: "Apple", value: "apple" },
+  //   { label: "Banana", value: "banana" },
+  // ]);
   //Upload Image
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -85,6 +102,8 @@ export default function FixForm({ props, navigation }) {
         status: "Request",
         url: url_image,
         req_user: user,
+        ratingCheck: false,
+        score: "",
       })
       .catch((err) => {
         console.log(err);
@@ -226,6 +245,10 @@ export default function FixForm({ props, navigation }) {
                 />
               )}
             </TouchableOpacity>
+          </View>
+          <View style={styles.group_input}>
+            <Text style={styles.text_headerlabel}>ประเภทปัญหา *</Text>
+            {/* <Dropdown label="Favourite fruit" data={data} /> */}
           </View>
         </View>
       </ScrollView>

@@ -87,6 +87,7 @@ export default function StaffForm({ route, navigation }) {
         url_image_fix: url_image,
         time_fix: t,
         staff_user: user,
+        ratingCheck: true,
       })
       .then(setSpinner(false))
       .catch((err) => {
