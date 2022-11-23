@@ -92,7 +92,9 @@ const Home = ({ props, navigation }) => {
               <Text style={{ fontSize: 20, fontWeight: "500" }}>
                 คําร้องของคุณได้รับการเเก้ไข
               </Text>
-              <Text style={{ fontSize: 20, fontWeight: "500" }}></Text>
+              <Text style={{ fontSize: 20, fontWeight: "500" }}>
+                กรุณาไปทําการประเมิณที่หน้า History
+              </Text>
               <Text style={{ fontSize: 20, fontWeight: "500" }}>
                 Rub job Application
               </Text>
@@ -112,13 +114,13 @@ const Home = ({ props, navigation }) => {
                   }}
                   onPress={() => {
                     setModalVisible(!modalVisible);
-                    navigation.navigate("History");
+                    // navigation.navigate("History");
                   }}
                 >
                   <Text
                     style={{ fontSize: 26, fontWeight: "300", color: "#FFF" }}
                   >
-                    Summit
+                    Close
                   </Text>
                 </TouchableOpacity>
               </View>
