@@ -90,13 +90,11 @@ const Home = ({ props, navigation }) => {
                 source={require("../assets/image-6.png")}
               />
               <Text style={{ fontSize: 20, fontWeight: "500" }}>
-                ยืนยันการส่งฟอร์ม
+                คําร้องของคุณได้รับการเเก้ไข
               </Text>
+              <Text style={{ fontSize: 20, fontWeight: "500" }}></Text>
               <Text style={{ fontSize: 20, fontWeight: "500" }}>
-                สำหรับการเเจ้งซ่อม
-              </Text>
-              <Text style={{ fontSize: 20, fontWeight: "500" }}>
-                (Comfirm Request Form)
+                Rub job Application
               </Text>
             </View>
             <View>
