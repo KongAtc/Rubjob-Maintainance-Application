@@ -12,9 +12,10 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useSelector } from "react-redux";
-
+import { SelectList } from "react-native-dropdown-select-list";
 import { app } from "./FirebaseDB";
 import firebase from "firebase/compat";
+import { SearchBar } from "react-native-screens";
 // import { Dropdown } from "react-native-material-dropdown";
 const lineNotify = require("line-notify-nodejs")(
   "dEo2sIrWIemijIwPBgS84gqtkt0h1bhQhVxpWndTfVw"
@@ -27,26 +28,19 @@ export default function FixForm({ props, navigation }) {
   const [modalShow, setModalShow] = useState(false);
   const [modalalert, setModalAlert] = useState(false);
   const [spinner, setSpinner] = useState(false);
+  const [selected, setSelected] = React.useState("");
   let url_image;
 
-  let data = [
-    {
-      value: "banana",
-    },
-    {
-      value: "apple",
-    },
+  const data = [
+    { key: "1", value: "ไฟฟ้า" },
+    { key: "2", value: "ประปา" },
+    { key: "3", value: "อาคารสถานที่" },
+    { key: "4", value: "อุปกรณ์ภายในคณะ" },
   ];
+
   //Connect FireBase
   const dbRef = app.firestore().collection("Fix_list");
 
-  // Dropdown
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  // const [items, setItems] = useState([
-  //   { label: "Apple", value: "apple" },
-  //   { label: "Banana", value: "banana" },
-  // ]);
   //Upload Image
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -104,6 +98,7 @@ export default function FixForm({ props, navigation }) {
         req_user: user,
         ratingCheck: false,
         score: "",
+        problemType: selected,
       })
       .catch((err) => {
         console.log(err);
@@ -113,6 +108,8 @@ export default function FixForm({ props, navigation }) {
         message:
           "\n🔥🔥🔥🔥🔥🔥🔥\n\nสถานที่ : " +
           place +
+          "\n\nประเภทปัญหา: " +
+          selected +
           "\n\nคําอธิบาย: " +
           description +
           "\n\nช่องทางการติดต่อ : " +
@@ -145,7 +142,13 @@ export default function FixForm({ props, navigation }) {
 
   //Checking Field
   function checkField() {
-    if (place == "" || description == "" || phone == "" || image == null) {
+    if (
+      place == "" ||
+      description == "" ||
+      phone == "" ||
+      image == null ||
+      selected == ""
+    ) {
       onModalAlert();
     } else {
       onModal();
@@ -197,6 +200,26 @@ export default function FixForm({ props, navigation }) {
           </View>
 
           <View style={styles.group_input}>
+            <Text style={styles.text_headerlabel}>ประเภทปัญหา *</Text>
+            <SelectList
+              setSelected={(val) => {
+                setSelected(val);
+              }}
+              data={data}
+              save="value"
+              boxStyles={{
+                width: "90%",
+                marginLeft: "5%",
+                border: 0,
+                backgroundColor: "#D9D9D9",
+              }}
+              dropdownStyles={{ width: "90%", marginLeft: "5%", border: 0 }}
+              onSelect={() => {
+                console.log(selected);
+              }}
+            />
+          </View>
+          <View style={styles.group_input}>
             <Text style={styles.text_headerlabel}>ช่องทางการติดต่อ *</Text>
             <TextInput
               multiline
@@ -246,10 +269,6 @@ export default function FixForm({ props, navigation }) {
               )}
             </TouchableOpacity>
           </View>
-          <View style={styles.group_input}>
-            <Text style={styles.text_headerlabel}>ประเภทปัญหา *</Text>
-            {/* <Dropdown label="Favourite fruit" data={data} /> */}
-          </View>
         </View>
       </ScrollView>
 
@@ -278,7 +297,9 @@ export default function FixForm({ props, navigation }) {
           }}
           onPress={checkField}
         >
-          <Text style={{ fontSize: 26, fontWeight: "650" }}>Save</Text>
+          <Text style={{ fontSize: 26, fontWeight: "650", color: "#F5F5F5" }}>
+            Save
+          </Text>
         </TouchableOpacity>
       </View>
 
