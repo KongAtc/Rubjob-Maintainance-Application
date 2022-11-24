@@ -47,8 +47,6 @@ const AdminItem = (props) => {
         message:
           "\n🧑‍🚒🧑‍🚒🧑‍🚒🧑‍🚒🧑‍🚒🧑‍🚒🧑‍🚒\n\nสถานที่ : " +
           props.place +
-          "\n\nประเภทปัญหา: " +
-          props.problemType +
           "\n\nคําอธิบาย: " +
           props.description +
           "\n\nช่องทางการติดต่อ : " +

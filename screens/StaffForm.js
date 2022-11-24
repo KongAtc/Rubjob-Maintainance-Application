@@ -207,7 +207,7 @@ export default function StaffForm({ route, navigation }) {
             style={{
               width: "50%",
               height: "100%",
-              backgroundColor: "#A9FAAC",
+              backgroundColor: "#44CB2E",
               justifyContent: "center",
               alignItems: "center",
               opacity: "80%",
